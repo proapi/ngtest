@@ -6,10 +6,6 @@
     My first AngularJS app!
   </title>
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
-
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -29,15 +25,18 @@
     </h1>
   </div>
 
-  <form ng-submit="addPost()">
-    <input type="text" ng-model="title" title="Enter title" placeholder="title">
+  <form ng-submit="addPost()"
+        style="margin-top: 30px">
+    <h3>Add a new post</h3>
+
+    <input type="text" ng-model="title" title="Enter title" placeholder="title" class="form-control">
     <br/>
-    <input type="text" ng-model="link" title="Enter url" placeholder="link">
+    <input type="text" ng-model="link" title="Enter url" placeholder="link" class="form-control">
     <br/>
-    <button type="submit">Add post</button>
+    <button type="submit" class="btn btn-primary">Add post</button>
   </form>
 
-  <div ng-repeat="post in posts | orderBy: '-upvotes'">
+  <div ng-repeat="post in posts | orderBy: '-upvotes'" style="margin-top: 30px;">
     <span class="glyphicon glyphicon-thumbs-up"
           ng-click="incrementUpvotes(post)"></span>
     {{post.upvotes}}
@@ -54,6 +53,7 @@
     </span>
   </div>
 </script>
+
 <script type="text/ng-template" id="/posts.html">
   <div class="page-header">
     <h1>
