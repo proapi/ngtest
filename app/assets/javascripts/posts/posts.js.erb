@@ -1,7 +1,14 @@
 angular.module('ngtest')
-    .factory('posts', function () {
-      var o = {
-        posts: []
-      };
-      return o;
-    });
+    .factory('posts', [
+      '$http',
+      function ($http) {
+        var o = {};
+
+        o.getAll = function () {
+          return $http.get('/posts.json').success(function (data) {
+            o.posts = angular.copy(data);
+          });
+        };
+
+        return o;
+      }]);

@@ -9,7 +9,12 @@ angular.module('ngtest', ['ui.router'])
             .state('home', {
               url: '/home',
               templateUrl: '<%= asset_path('home/_home.html') %>',
-              controller: 'MainCtrl'
+              controller: 'MainCtrl',
+              resolve: {
+                postPromise: ['posts', function (posts) {
+                  return posts.getAll();
+                }]
+              }
             })
             .state('posts', {
               url: '/posts/{id}',
