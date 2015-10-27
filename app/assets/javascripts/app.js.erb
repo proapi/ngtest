@@ -19,7 +19,12 @@ angular.module('ngtest', ['ui.router'])
             .state('posts', {
               url: '/posts/{id}',
               templateUrl: '<%= asset_path('posts/_posts.html') %>',
-              controller: 'PostsCtrl'
+              controller: 'PostsCtrl',
+              resolve: {
+                post: ['$stateParams', 'posts', function($stateParams, posts) {
+                  return posts.get($stateParams.id);
+                }]
+              }
             });
       }
     ]);
