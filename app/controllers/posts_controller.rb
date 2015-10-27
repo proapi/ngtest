@@ -5,18 +5,18 @@ class PostsController < ApplicationController
   end
 
   def create
-    respond_with Post.create(post_params)
+    @post = Post.create(post_params)
   end
 
   def show
-    respond_with Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def upvote
     post = Post.find(params[:id])
     post.increment!(:upvotes)
 
-    respond_with post
+    @post = post
   end
 
   private
